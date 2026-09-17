@@ -1,82 +1,62 @@
-# banked-with-gaps
+# Historical claims with missing proofs
 
-**Historical claim bank for results whose original cards lacked enough proof evidence. One of the two principal gaps has now been repaired; the other remains an explicit unproved statement bank.**
+This repository preserves mathematical statements whose original source cards did not contain enough proof material to support the status attached to them.
 
-Author: Jared Wilder. First public timestamp: 2026-09-11.
+One major gap has since been repaired; one group of claims remains unresolved.
 
-This repository is an audit/provenance object. Its purpose is to preserve what the original cards actually contained, including missing proof bodies, while linking outward when a claim is later repaired or promoted elsewhere.
+## Conference-switching theorem — repaired
 
-## 1. Conference-switching elimination — RESOLVED
+The historical conference-matrix card asserted a construction-class impossibility theorem for order `N=4m+2`. The missing contradiction has since been completed.
 
-The historical card in `cards/conference-elimination.jsonl` stated a construction-class impossibility theorem for symmetric conference matrices of order `N=4m+2`, but its proof stopped after deriving the exact common-neighbour formulas.
+Let `C` be the switched conference matrix, `r_i=\sum_j C_{ij}`, and `s_i=r_i-1`. The two book-avoidance inequalities imply, for every distinct pair,
 
-During the September 11 public topology audit, the missing contradiction was completed.
+\[
+C_{ij}(s_i+s_j)\le0.
+\]
 
-The canonical theorem and full proof now live at:
+But `r=C\mathbf1` and `C^2=(N-1)I`, so
 
-`jaredwilder/combinatorial-records/ramsey/conference-switching-book-elimination.md`
+\[
+Cs=(N-2)\mathbf1-s.
+\]
 
-### Completed argument
+For each `i`,
 
-Let `r_i=sum_j C_ij` and put `s_i=r_i-1`.
-
-The two book-avoidance inequalities imply:
-
-- if `C_ij=-1`, then `s_i+s_j>=0`;
-- if `C_ij=+1`, then `s_i+s_j<=0`.
-
-Thus for every distinct pair,
-
-`C_ij(s_i+s_j)<=0`.
-
-But `r=C1` and `C^2=(N-1)I`, so
-
-`Cs=(N-2)1-s`.
-
-Therefore, for every `i`,
-
-`sum_j C_ij(s_i+s_j)`
-
-`= s_i r_i + (Cs)_i`
-
-`= s_i^2 + N - 2 > 0`,
+\[
+\sum_j C_{ij}(s_i+s_j)
+=s_i r_i+(Cs)_i
+=s_i^2+N-2>0,
+\]
 
 contradicting the pairwise nonpositivity.
 
-Hence the conference-switching construction class really is eliminated. The historical card remains here unchanged as provenance; the gap status is closed by the canonical proof, not by silently editing the card.
+The completed theorem now lives in the Ramsey records; the original incomplete card is retained here only as source history.
 
-## 2. Seventeen entire-function cards — UNRESOLVED
+## Entire-function claims — unresolved
 
-`cards/entire-functions.jsonl` contains seventeen statements concerning
+[`cards/entire-functions.jsonl`](cards/entire-functions.jsonl) contains 17 statements about
 
-`beta(f)=liminf_r mu(r,f)/M(r,f)`
+\[
+\beta(f)=\liminf_r \frac{\mu(r,f)}{M(r,f)}
+\]
 
-for transcendental entire functions. Their historical status labels say `PROVED-HERE`, but the cards contain **no proof bodies**.
+for transcendental entire functions.
 
-The statements include:
+The cards include assertions about:
 
-- a reduction to Newton-envelope breakpoints;
-- a switch-profile formula;
-- a two-active-coefficient bound `||F||_infinity >= pi/2` and hence `mu/M <= 2/pi`;
-- confinement `3/2 < K < 8` for a theta-family minimizer;
-- a recursion between consecutive normalized switch profiles.
+- Newton-envelope breakpoints;
+- normalized switch profiles;
+- a two-active-coefficient `\pi/2` bound;
+- a claimed interval for a theta-family minimizer;
+- recurrences between consecutive switch profiles.
 
-Those statements are specific enough to investigate, but the old `PROVED-HERE` label is not evidence. They should not be cited as established until reconstructed proofs or independent proofs are supplied.
+The historical cards label these statements as proved, but they contain no proof bodies. Until proofs are reconstructed or supplied independently, these 17 statements should be treated as open verification tasks rather than established theorems.
 
-The unrelated appearance of a `pi/2` lower bound in another engineering-style optimization card is heuristic cross-context evidence only; it does not prove any of these entire-function statements.
+## Files
 
-## Why retain this repository
+- [`cards/conference-elimination.jsonl`](cards/conference-elimination.jsonl) — the original incomplete conference card.
+- [`cards/entire-functions.jsonl`](cards/entire-functions.jsonl) — the 17 entire-function statements awaiting proof reconstruction.
 
-A missing proof is useful information when it is visible. The correct lifecycle is:
+This repository is deliberately small: completed mathematics belongs in its subject repository; only unresolved source gaps remain here.
 
-1. preserve the historical card;
-2. state the gap precisely;
-3. repair or independently prove the mathematics if possible;
-4. route the completed result to its mathematical subject home;
-5. leave this repository as the provenance record.
-
-The conference-switching theorem has now completed that lifecycle. The seventeen entire-function cards have not.
-
-## License
-
-Apache-2.0.
+Author: Jared Wilder. License: Apache-2.0.
